@@ -1,0 +1,9 @@
+data/genomes/atlantic_phycosphere/*
+data/genomes/TARA_euk_genomes/*
+data/genomes/TARA_prok_genomes/*
+data/carveme_universes/photoeukstein/*
+data/genomes/pseudo-nitzschia/*.fa
+nextflow_output/*
+.nextflow/*
+.nextflow.log
+.vscode/*

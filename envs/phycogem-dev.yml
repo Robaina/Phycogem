@@ -1,0 +1,16 @@
+name: phycogem-dev
+channels:
+  - defaults
+  - bioconda
+  - conda-forge
+dependencies:
+  - python >= 3.8
+  - numpy
+  - pandas
+  - cobra
+  - nextflow
+  - pip:
+    - poetry
+    - ruff
+    - black
+    - coverage
