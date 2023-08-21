@@ -129,6 +129,86 @@ def extract_chemical_elements(formula: str) -> dict:
     return component_dict
 
 
+def is_co2(chemical_elements: dict) -> bool:
+    """Check whether molecule is CO2.
+
+    Args:
+        chemical_elements (dict): dictionary of chemical elements
+
+    Returns:
+        bool: True if CO2, False otherwise
+    """
+    return chemical_elements == {"C": 1, "O": 2}
+
+
+def is_hco3(chemical_elements: dict) -> bool:
+    """Check whether molecule is HCO3-.
+
+    Args:
+        chemical_elements (dict): dictionary of chemical elements
+
+    Returns:
+        bool: True if HCO3-, False otherwise
+    """
+    return chemical_elements == {"C": 1, "H": 1, "O": 3}
+
+
+def get_organic_exchanges(model: Model) -> list[str]:
+    """
+    Get IDs of all organic exchanges in a model.
+
+    Parameters
+    ----------
+    model : cobra.Model
+        Model to get exchanges from.
+
+    Returns
+    -------
+    list
+        List of exchange IDs.
+    """
+    organic_exchanges = []
+    for rxn in model.exchanges:
+        met = [met for met in rxn.metabolites][0]
+        if met.formula is not None:
+            chemical_elements = extract_chemical_elements(met.formula)
+            if (
+                (not is_co2(chemical_elements))
+                or (not is_hco3(chemical_elements))
+                or ("C" in chemical_elements)
+            ):
+                organic_exchanges.append(rxn.id)
+    return organic_exchanges
+
+
+def get_inorganic_exchanges(model: Model) -> list[str]:
+    """
+    Get IDs of all inorganic exchanges in a model.
+
+    Parameters
+    ----------
+    model : cobra.Model
+        Model to get exchanges from.
+
+    Returns
+    -------
+    list
+        List of exchange IDs.
+    """
+    inorganic_exchanges = []
+    for rxn in model.exchanges:
+        met = [met for met in rxn.metabolites][0]
+        if met.formula is not None:
+            chemical_elements = extract_chemical_elements(met.formula)
+            if (
+                (is_co2(chemical_elements))
+                or (is_hco3(chemical_elements))
+                or ("C" not in chemical_elements)
+            ):
+                inorganic_exchanges.append(rxn.id)
+    return inorganic_exchanges
+
+
 def open_inorganic_exchanges(
     model: Model,
     lower_bound: float = -1000,

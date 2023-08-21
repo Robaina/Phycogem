@@ -7,3 +7,5 @@ nextflow_output/*
 .nextflow/*
 .nextflow.log
 .vscode/*
+notebooks/reconstruction.py
+notebooks/__pycache__/*
