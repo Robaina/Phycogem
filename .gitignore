@@ -9,3 +9,4 @@ nextflow_output/*
 .vscode/*
 notebooks/reconstruction.py
 notebooks/__pycache__/*
+results/models_bacteria/*

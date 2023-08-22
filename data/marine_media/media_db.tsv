@@ -242,4 +242,6 @@ MARINE	Seawater environnment	zn2	ZN2+
 MARINE	Seawater environnment	cl	Cl-
 MARINE	Seawater environnment	thm	thiamine
 MARINE	Seawater environnment	fol	Folate
+MARINE	Seawater environnment	adodbl	Adenosylcobalamin
+MARINE	Seawater environnment	cbl1	Cobalamin
 MARINE	Seawater environnment	glc__D	D-Glucose
