@@ -117,6 +117,17 @@ class GEM:
         for exchange in self._model.exchanges:
             exchange.lower_bound = -1000
 
+    def close_exchanges(self) -> None:
+        """
+        Close all exchange reactions in a model.
+
+        Args:
+            model (Model): _description_
+        """
+        for rxn in self._model.reactions:
+            if rxn.id.startswith("EX_"):
+                rxn.lower_bound = 0
+
     def remove_duplicated_reactions(self, duplicated_reactions: list[list]) -> None:
         """Remove duplicated reactions from model
 
@@ -260,3 +271,23 @@ class GEM:
                 self._model.add_boundary(met_to_add, type="exchange")
             else:
                 print(f"Metabolite {met_id} not found in self._model.")
+
+    def set_medium(
+        self, medium_id: str, media_db: Path, carbon_source: tuple[str, float] = None
+    ) -> None:
+        """
+        Set the medium for a model.
+
+        Args:
+            medium_id (str): _description_
+            media_db (Path): _description_
+            carbon_source (tuple[str, float]): _description_
+        """
+        model = self.close_exchanges()
+        medium_dict = helpers.get_medium_dict_from_media_db(media_db, medium_id)
+        if carbon_source is not None:
+            medium_dict[carbon_source[0]] = carbon_source[1]
+        for rxn_id, flux in medium_dict.items():
+            if rxn_id in model.reactions:
+                model.reactions.get_by_id(rxn_id).lower_bound = -flux
+        return model
