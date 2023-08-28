@@ -1,10 +1,1 @@
 community	medium	receiver	donor	compound	scs	mus	mps	smetana
-all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00080.genepred	M_rib__D_e	0.5	1.0	1	0.5
-all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00080.genepred	M_thm_e	0.5	1.0	1	0.5
-all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00174.genepred	M_alaala_e	0.5	1.0	1	0.5
-all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00174.genepred	M_rib__D_e	0.5	1.0	1	0.5
-all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00174.genepred	M_thm_e	0.5	1.0	1	0.5
-all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00080.genepred	M_rib__D_e	0.5	1.0	1	0.5
-all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00080.genepred	M_thm_e	0.5	1.0	1	0.5
-all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00174.genepred	M_rib__D_e	1.0	1.0	1	1.0
-all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00174.genepred	M_thm_e	1.0	1.0	1	1.0
