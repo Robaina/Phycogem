@@ -5,12 +5,14 @@ channels:
   - conda-forge
 dependencies:
   - python >= 3.8
+  - pip
   - numpy
   - pandas
   - cobra
   - nextflow
   - pip:
     - poetry
+    - ipykernel
     - ruff
     - black
     - coverage
