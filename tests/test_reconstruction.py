@@ -14,5 +14,10 @@ from phycogem.reconstruction import *
 this_file_dir = Path(__file__).parent
 
 
+class TestGEM(unittest.TestCase):
+    def test_remove_shuttle_reactions(self):
+        self.assertEqual()
+
+
 if __name__ == "__main__":
     unittest.main()

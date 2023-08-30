@@ -8,10 +8,10 @@ dependencies:
   - pip
   - numpy
   - pandas
-  - cobra
   - nextflow
   - pip:
     - poetry
+    - cobra
     - ipykernel
     - ruff
     - black

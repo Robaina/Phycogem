@@ -2,17 +2,21 @@ from __future__ import annotations
 from pathlib import Path
 
 import pandas as pd
+import cobra
 from cobra import Reaction, Model
 
-import reconstruction_helpers as helpers
+import phycogem.reconstruction_helpers as helpers
 
 
 class GEM:
     """Store and manipulate a genome-scale metabolic self._model."""
 
-    def __init__(self, model: Model):
-        self._model = self._model.copy()
-        self._original_model = model
+    def __init__(self, model: Path):
+        self._model = cobra.io.read_sbml_model(model)
+        self._original_model = self._model.copy()
+
+    def _repr_html_(self):
+        return self._model._repr_html_()
 
     @property
     def model(self) -> Model:
