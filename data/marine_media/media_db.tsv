@@ -244,4 +244,34 @@ MARINE	Seawater environnment	thm	thiamine
 MARINE	Seawater environnment	fol	Folate
 MARINE	Seawater environnment	adodbl	Adenosylcobalamin
 MARINE	Seawater environnment	cbl1	Cobalamin
-MARINE	Seawater environnment	glc__D	D-Glucose
+MARINE	Seawater environnment	glc__D	D-GlucoseMARINE
+MARINE[iTPS1432]	Seawater environnment	glyb	betaine
+MARINE[iTPS1432]	Seawater environnment	btn	biotine
+MARINE[iTPS1432]	Seawater environnment	co	carbon monoxide
+MARINE[iTPS1432]	Seawater environnment	co2	carbon dioxyde
+MARINE[iTPS1432]	Seawater environnment	cobalt2	cobalt
+MARINE[iTPS1432]	Seawater environnment	cu2	Cu2+
+MARINE[iTPS1432]	Seawater environnment	fe2	Fe2+
+MARINE[iTPS1432]	Seawater environnment	fe3	Fe3+
+MARINE[iTPS1432]	Seawater environnment	h2	dihydrogene
+MARINE[iTPS1432]	Seawater environnment	h2o	water
+MARINE[iTPS1432]	Seawater environnment	hco3	bicarbonate
+MARINE[iTPS1432]	Seawater environnment	k	K+
+MARINE[iTPS1432]	Seawater environnment	mg2	Mg2+
+MARINE[iTPS1432]	Seawater environnment	mn2	Mn2+
+MARINE[iTPS1432]	Seawater environnment	n2	Nitrogen
+MARINE[iTPS1432]	Seawater environnment	na1	Na+
+MARINE[iTPS1432]	Seawater environnment	nh4	NH4+
+MARINE[iTPS1432]	Seawater environnment	no2	NO2-
+MARINE[iTPS1432]	Seawater environnment	no3	NO3-
+MARINE[iTPS1432]	Seawater environnment	o2	O2
+MARINE[iTPS1432]	Seawater environnment	photon650	photon (light)
+MARINE[iTPS1432]	Seawater environnment	pi	Phosphate
+MARINE[iTPS1432]	Seawater environnment	h	hydrogen
+MARINE[iTPS1432]	Seawater environnment	so4	SO42-
+MARINE[iTPS1432]	Seawater environnment	urea	Urea
+MARINE[iTPS1432]	Seawater environnment	zn2	ZN2+
+MARINE[iTPS1432]	Seawater environnment	cl	Cl-
+MARINE[iTPS1432]	Seawater environnment	thm	thiamine
+MARINE[iTPS1432]	Seawater environnment	fol	Folate
+MARINE[iTPS1432]	Seawater environnment	sio4h4	Silicate

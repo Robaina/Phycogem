@@ -196,7 +196,7 @@ class GEM:
             inorganic ones. Default is None.
         """
         for rxn in self._model.exchanges:
-            if rxn.id in include:
+            if include is not None and rxn.id in include:
                 rxn.lower_bound = lower_bound
                 rxn.upper_bound = upper_bound
             else:
@@ -277,7 +277,7 @@ class GEM:
                 print(f"Metabolite {met_id} not found in self._model.")
 
     def set_medium(
-        self, medium_id: str, media_db: Path, carbon_source: tuple[str, float] = None
+        self, medium_id: str, media_db: Path, energy_source: tuple[str, float] = None
     ) -> None:
         """
         Set the medium for a model.
@@ -285,13 +285,36 @@ class GEM:
         Args:
             medium_id (str): _description_
             media_db (Path): _description_
-            carbon_source (tuple[str, float]): _description_
+            energy_source (tuple[str, float]): _description_
         """
-        model = self.close_exchanges()
-        medium_dict = helpers.get_medium_dict_from_media_db(media_db, medium_id)
-        if carbon_source is not None:
-            medium_dict[carbon_source[0]] = carbon_source[1]
-        for rxn_id, flux in medium_dict.items():
-            if rxn_id in model.reactions:
-                model.reactions.get_by_id(rxn_id).lower_bound = -flux
-        return model
+        self.close_exchanges()
+        medium_dict = {
+            rxn_id: flux
+            for rxn_id, flux in helpers.get_medium_dict_from_media_db(
+                media_db, medium_id
+            ).items()
+            if rxn_id in self._model.exchanges
+        }
+
+        if energy_source is not None:
+            if energy_source[0] in self._model.exchanges:
+                medium_dict[energy_source[0]] = energy_source[1]
+            else:
+                print(f"Carbon source {energy_source[0]} not found in model.")
+        self._model.medium = medium_dict
+
+    def rescale_fluxes(self, maximum_flux: float = 1000.0) -> None:
+        """
+        Rescale maximum fluxes of all reactions in a self._model.
+
+        Args:
+            model (Model): _description_
+            max_flux (float, optional): _description_. Defaults to 1000.0.
+        """
+        max_abs_flux = max(
+            [abs(rxn.upper_bound) for rxn in self._model.reactions]
+            + [abs(rxn.lower_bound) for rxn in self._model.reactions]
+        )
+        for rxn in self._model.reactions:
+            rxn.upper_bound = maximum_flux * (rxn.upper_bound / max_abs_flux)
+            rxn.lower_bound = maximum_flux * (rxn.lower_bound / max_abs_flux)
