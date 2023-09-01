@@ -1,4 +1,14 @@
-# Phycogem: Reconstructing phycospheric metabolic networks
+![logo](docs/images/phycogem_logo.png)
+<br>
+
+# Reconstructing phycospheric metabolic networks
+
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+![license](https://img.shields.io/github/license/Robaina/Pynteny)
+![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4)
+![python](https://img.shields.io/badge/Python-3.11-blue)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 
 Updating CarveME's universe curation pipeline in [this fork](https://github.com/Robaina/carveme_expanded_universe)
 

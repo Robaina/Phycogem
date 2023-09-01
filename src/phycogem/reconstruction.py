@@ -318,3 +318,50 @@ class GEM:
         for rxn in self._model.reactions:
             rxn.upper_bound = maximum_flux * (rxn.upper_bound / max_abs_flux)
             rxn.lower_bound = maximum_flux * (rxn.lower_bound / max_abs_flux)
+
+    def remove_blocked_reactions(self) -> None:
+        """
+        Remove blocked reactions from a self._model.
+
+        Args:
+            model (Model): _description_
+        """
+        self._model.optimize()
+        blocked_rxns = cobra.flux_analysis.variability.find_blocked_reactions(
+            self._model
+        )
+        self._model.remove_reactions(blocked_rxns, remove_orphans=True)
+
+    def compute_flux_ranges(self) -> pd.DataFrame:
+        """
+        Compute flux ranges for all reactions in a self._model.
+
+        Args:
+            model (Model): _description_
+        """
+        self._model.optimize()
+        flux_ranges = cobra.flux_analysis.variability.flux_variability_analysis(
+            self._model
+        )
+        return flux_ranges
+
+    def sample_flux_space(
+        self, n_samples: int = 1000, n_processes: int = None
+    ) -> pd.DataFrame:
+        """
+        Sample the flux space of a self._model.
+
+        Args:
+            model (Model): _description_
+            n_samples (int, optional): _description_. Defaults to 1000.
+
+        Returns:
+            DataFrame: _description_
+        """
+        if n_processes is None:
+            n_processes = 2
+        self._model.optimize()
+        flux_samples = cobra.sampling.sample(
+            self._model, n_samples, method="achr", processes=n_processes
+        )
+        return flux_samples
