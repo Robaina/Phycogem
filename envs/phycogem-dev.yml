@@ -6,12 +6,15 @@ channels:
 dependencies:
   - python >= 3.8
   - pip
-  - numpy
-  - pandas
   - nextflow
+  - pyscipopt
   - pip:
+    - escher
+    - markupsafe==2.0.1
+    - pandas
+    - seaborn
+    - gurobipy
     - poetry
-    - cobra
     - ipykernel
     - ruff
     - black
