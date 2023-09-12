@@ -1,4 +1,5 @@
 import re
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -62,3 +63,31 @@ def get_medium_dict_from_media_db(media_db: Path, medium_id: str) -> dict:
         f"EX_{species}_e": 1000
         for species in media[media["medium"] == medium_id].compound
     }
+
+
+def get_dict_of_metabolite_ids(BIGG_metabolites_json: Path) -> dict:
+    """
+    Get a dictionary of metabolite IDs and names from the BIGG metabolites JSON file.
+    Args:
+        BIGG_metabolites_json (Path): _description_
+
+    Returns:
+        dict: _description_
+    """
+    with open(BIGG_metabolites_json, "r") as f:
+        met_data = json.load(f)
+    met_names = {}
+    for entry in met_data["results"]:
+        met_names[entry["bigg_id"]] = entry["name"]
+    return met_names
+
+
+def assign_name_to_met_id(met_names: dict, met_id: str) -> str:
+    """
+    Assign a name to a metabolite ID.
+    """
+    met_id = met_id.split("_")[1]
+    if met_id in met_names:
+        return met_names[met_id]
+    else:
+        return met_id

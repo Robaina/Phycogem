@@ -1,6 +1,11 @@
+import json
+from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pandas import DataFrame, Series
+
+import networkx as nx
+from networkx.readwrite import json_graph
 
 
 def plot_flux_distribution(
@@ -8,7 +13,8 @@ def plot_flux_distribution(
     reaction_ids: list,
     histogram: bool = False,
     fva: DataFrame = None,
-    figsize_per_plot: tuple = (10, 6),
+    figsize_per_plot: tuple = (4, 3),
+    n_colums: int = 3,
 ):
     """Plot the flux ranges and sample for a list of reactions.
 
@@ -21,18 +27,22 @@ def plot_flux_distribution(
     """
 
     n_reactions = len(reaction_ids)
-    n_rows = (n_reactions + 1) // 2
+    n_rows = (n_reactions + 1) // n_colums
 
     fig, axes = plt.subplots(
-        n_rows, 2, figsize=(figsize_per_plot[0] * 2, figsize_per_plot[1] * n_rows)
+        n_rows,
+        n_colums,
+        figsize=(figsize_per_plot[0] * n_colums, figsize_per_plot[1] * n_rows),
     )
     if n_reactions == 1:
         axes = [[axes]]
-    elif n_reactions % 2 == 1:
-        fig.delaxes(axes[-1, -1])
+    elif n_reactions % n_colums != 0:
+        for j in range(n_colums - 1, n_reactions % n_colums - 1, -1):
+            fig.delaxes(axes[-1, j])
 
+    handles, labels = [], []
     for i, reaction_id in enumerate(reaction_ids):
-        ax = axes[i // 2, i % 2]
+        ax = axes[i // n_colums, i % n_colums]
 
         if histogram:
             sns.histplot(
@@ -54,18 +64,19 @@ def plot_flux_distribution(
         if fva is not None:
             min_flux = fva.loc[reaction_id, "minimum"]
             max_flux = fva.loc[reaction_id, "maximum"]
-            ax.axvline(
-                min_flux, color="r", linestyle="--", label=f"Min Flux: {min_flux:.2f}"
-            )
-            ax.axvline(
-                max_flux, color="b", linestyle="--", label=f"Max Flux: {max_flux:.2f}"
-            )
+            line1 = ax.axvline(min_flux, color="r", linestyle="--")
+            line2 = ax.axvline(max_flux, color="b", linestyle="--")
 
-        ax.set_title(f"Flux Distribution for {reaction_id}")
+        ax.set_title(f"{reaction_id}")
         ax.set_xlabel("mmol/gDW/h")
         ax.set_ylabel("Density")
-        ax.legend()
 
+    handles, labels = axes[0, 0].get_legend_handles_labels()
+    if fva is not None:
+        handles += [line1, line2]
+        labels += [f"Min Flux: {min_flux:.2f}", f"Max Flux: {max_flux:.2f}"]
+
+    fig.legend(handles, labels, loc="lower right", bbox_to_anchor=(0.95, 0.05))
     plt.tight_layout()
     plt.show()
 
@@ -113,3 +124,35 @@ def rename_rxn_ids_for_escher(fluxes: Series, reaction_mapping: dict):
     fluxes.index = fluxes.index.map(custom_replace)
     fluxes = fluxes.groupby(fluxes.index).first().rename(index=reaction_mapping)
     return fluxes
+
+
+def get_graph_object_from_smetana_table(
+    smetana_table: DataFrame, weight: str = None, output_graph: Path = None
+) -> nx.DiGraph:
+    """Create a bipartite graph object from a smetana table.
+
+    Args:
+        smetana_table (DataFrame): _description_
+        output_graph (Path, optional): _description_. Defaults to None.
+
+    Returns:
+        nx.DiGraph: _description_
+    """
+    B = nx.DiGraph()
+    for i, row in smetana_table.iterrows():
+        if weight is not None:
+            edge_weight = row[weight]
+        else:
+            edge_weight = None
+        donor_id = row["donor"]
+        receiver_id = row["receiver"]
+        compound_id = row["compound"]
+        B.add_edge(donor_id, compound_id, weight=edge_weight)
+        B.add_edge(compound_id, receiver_id, weight=edge_weight)
+        B.add_node(donor_id, bipartite=0, group="genome")
+        B.add_node(receiver_id, bipartite=0, group="genome")
+        B.add_node(compound_id, bipartite=1, group="compound")
+    if output_graph is not None:
+        graph_data = json_graph.cytoscape_data(B)
+        json.dump(graph_data, open(output_graph, "w"))
+    return B

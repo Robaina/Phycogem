@@ -1,0 +1,17 @@
+community	medium	receiver	donor	compound	scs	mus	mps	smetana
+all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00080.genepred	M_fe3pyovd_kt_e	0.5	0.39	1	0.195
+all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00080.genepred	M_nadp_e	0.5	0.8	1	0.4
+all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00080.genepred	M_thm_e	0.5	1.0	1	0.5
+all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00174.genepred	M_alaala_e	0.5	0.89	1	0.445
+all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00174.genepred	M_fe3pyovd_kt_e	0.5	0.39	1	0.195
+all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00174.genepred	M_h2_e	0.5	0.32	1	0.16
+all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00174.genepred	M_nadp_e	0.5	0.8	1	0.4
+all	M9[marine]	TARA_ARC_108_MAG_00117.genepred	TARA_ARC_108_MAG_00174.genepred	M_thm_e	0.5	1.0	1	0.5
+all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00080.genepred	M_fad_e	0.5	0.92	1	0.46
+all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00080.genepred	M_fe3pyovd_kt_e	0.5	0.02	1	0.01
+all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00080.genepred	M_salchs4fe_e	0.5	0.01	1	0.005
+all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00080.genepred	M_thm_e	0.5	1.0	1	0.5
+all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00174.genepred	M_fad_e	1.0	0.92	1	0.92
+all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00174.genepred	M_fe3pyovd_kt_e	1.0	0.02	1	0.02
+all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00174.genepred	M_salchs4fe_e	1.0	0.01	1	0.01
+all	M9[marine]	TARA_ARC_108_MAG_00139.genepred	TARA_ARC_108_MAG_00174.genepred	M_thm_e	1.0	1.0	1	1.0
