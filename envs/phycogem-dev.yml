@@ -13,6 +13,7 @@ dependencies:
     - markupsafe==2.0.1
     - pandas
     - seaborn
+    - networkx
     - gurobipy
     - poetry
     - ipykernel
