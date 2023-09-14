@@ -11,6 +11,7 @@ nextflow_output/*
 .nextflow.log
 .vscode/*
 
+notebooks2/*
 notebooks/reconstruction.py
 notebooks/__pycache__/*
 results/models_bacteria/*

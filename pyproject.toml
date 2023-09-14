@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "phycogem"
-version = "0.0.1"
+version = "0.0.2"
 description = "Reconstructing phycophere communities from genomic data"
 license = "Apache-2.0"
 authors = ["Semidán Robaina Estévez <semidan.robaina@gmail.com>"]

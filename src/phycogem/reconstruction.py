@@ -13,7 +13,6 @@ class GEM:
 
     def __init__(self, model: Path):
         self._model = cobra.io.read_sbml_model(model)
-        self._original_model = self._model.copy()
 
     def _repr_html_(self):
         return self._model._repr_html_()
@@ -23,9 +22,9 @@ class GEM:
         """Return cobrapy model object."""
         return self._model
 
-    def reset(self) -> None:
-        """Reset model to original state."""
-        self._model = self._original_self._model.copy()
+    def write(self, output_path: Path) -> None:
+        """Write model to file."""
+        cobra.io.write_sbml_model(self._model, output_path)
 
     def remove_shuttle_reactions(
         self, allowed_compartments: set = {"c", "e", "p"}
@@ -107,6 +106,34 @@ class GEM:
             if met_id in cpd_db.index:
                 met.formula = cpd_db.loc[met_id, "formula"]
                 met.charge = cpd_db.loc[met_id, "charge"]
+
+    def prepare_for_carveme(self, output_reaction_file: Path) -> None:
+        """
+        Prepare model for carveme universe curation pipeline.
+        (This is a provisional fix to avoid modiying CarveME source code)
+        1. Change compartment name to 'C_' format
+        2. Generate model specific reaction list csv file
+        """
+        for met in self._model.metabolites:
+            if not met.compartment.startswith("C_"):
+                met.compartment = f"C_{met.compartment}"
+
+        data = []
+        for rxn in self._model.reactions:
+            data.append(
+                [
+                    "iML1515",
+                    rxn.id,
+                    rxn.lower_bound,
+                    rxn.upper_bound,
+                    rxn.subsystem,
+                    rxn.gene_reaction_rule,
+                ]
+            )
+        df = pd.DataFrame(
+            data, columns=["model", "reaction", "lb", "ub", "subsystem", "gpr"]
+        )
+        df.to_csv(output_reaction_file, index=False)
 
     def open_exchanges(self) -> None:
         """
