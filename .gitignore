@@ -16,3 +16,5 @@ notebooks/reconstruction.py
 notebooks/__pycache__/*
 results/models_bacteria/*
 results/flux_samples/*
+
+data/modelSEED/*

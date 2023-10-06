@@ -47,4 +47,4 @@ This environment includes a Jupyter Notebook ipykernel, so the package can be us
 
 ## :notebook_with_decorative_cover: Notebooks
 
-This repo contains several Notebooks to exemply the use of the package. They can be found within the `docs` folder.
+This repo contains several Notebooks to exemply the use of the package. They can be found within the `notebooks` folder.
