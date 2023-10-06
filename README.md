@@ -1,4 +1,4 @@
-![logo](docs/images/phycogem_logo.png)
+![logo](notebooks/images/phycogem_logo.png)
 <br>
 
 # Reconstructing phycospheric metabolic networks
