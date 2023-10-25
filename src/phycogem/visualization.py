@@ -143,7 +143,7 @@ def get_graph_object_from_smetana_table(
         if weight is not None:
             edge_weight = row[weight]
         else:
-            edge_weight = None
+            edge_weight = ""
         donor_id = row["donor"]
         receiver_id = row["receiver"]
         compound_id = row["compound"]

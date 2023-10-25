@@ -1,0 +1,5 @@
+sample_id,id,abundance,file
+TARA_ARC_108,Alteromonas_sp,0.364398,/home/robaina/Documents/NewAtlantis/phycosphere/results/models/TARA_ARC_108_MAG_00080.genepred.xml
+TARA_ARC_108,Marinobacter_sp,0.029670,/home/robaina/Documents/NewAtlantis/phycosphere/results/models/TARA_ARC_108_MAG_00174.genepred.xml
+TARA_ARC_108,Polaribacter_sp,0.016877,/home/robaina/Documents/NewAtlantis/phycosphere/results/models/TARA_ARC_108_MAG_00201.genepred.xml
+TARA_ARC_108,Sulfitobacter_sp,0.1,/home/robaina/Documents/NewAtlantis/phycosphere/results/models/TARA_ARC_108_MAG_00083.genepred.xml
