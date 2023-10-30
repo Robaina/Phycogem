@@ -244,7 +244,7 @@ MARINE	Seawater environnment	thm	thiamine
 MARINE	Seawater environnment	fol	Folate
 MARINE	Seawater environnment	adodbl	Adenosylcobalamin
 MARINE	Seawater environnment	cbl1	Cobalamin
-MARINE	Seawater environnment	glc__D	D-GlucoseMARINE
+MARINE	Seawater environnment	glc__D	D-Glucose
 MARINE[iTPS1432]	Seawater environnment	glyb	betaine
 MARINE[iTPS1432]	Seawater environnment	btn	biotine
 MARINE[iTPS1432]	Seawater environnment	co	carbon monoxide
