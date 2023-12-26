@@ -7,14 +7,17 @@ dependencies:
   - python >= 3.8
   - pip
   - nextflow
+  - diamond
   - pyscipopt
   - pip:
+    - carveme
     - escher
     - markupsafe==2.0.1
     - pandas
     - seaborn
     - networkx
-    - gurobipy
+    - gurobipy==10.0.3
+    - osqp
     - poetry
     - ipykernel
     - ruff
